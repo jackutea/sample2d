@@ -9,6 +9,11 @@ namespace Sample2D.Facades {
         public static PlayerInputEntity InputEntity => inputEntity;
         public static void SetInputEntity(PlayerInputEntity entity) => inputEntity = entity;
 
+        // 主相机
+        static CameraEntity cameraEntity;
+        public static CameraEntity CameraEntity => cameraEntity;
+        public static void SetCameraEntity(CameraEntity cam) => cameraEntity = cam;
+
         // 玩家
         static PlayerEntity playerEntity;
         public static PlayerEntity PlayerEntity => playerEntity;

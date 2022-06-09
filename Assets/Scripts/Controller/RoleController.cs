@@ -17,19 +17,9 @@ namespace Sample2D.Controller {
         }
 
         // 物理发生
-        public void FixedTick() {
+        public void FixedTick(float fixedDeltaTime) {
 
-        }
-
-        public void Tick() {
-
-            // 生成角色
-            if (AllEventCenter.IsSpawnRole) {
-                AllEventCenter.SetIsSpawnRole(false);
-                SpawnRole();
-            }
-
-            // 输入控制
+            // 角色移动
             RoleEntity role = AllRepo.RoleEntity;
             if (role != null) {
                 
@@ -41,6 +31,18 @@ namespace Sample2D.Controller {
                 float jumpAxis = player.jumpAxis;
                 role.Jump(jumpAxis);
 
+                role.Falling(jumpAxis, fixedDeltaTime);
+
+            }
+
+        }
+
+        public void Tick() {
+
+            // 生成角色
+            if (AllEventCenter.IsSpawnRole) {
+                AllEventCenter.SetIsSpawnRole(false);
+                SpawnRole();
             }
 
         }
@@ -55,9 +57,23 @@ namespace Sample2D.Controller {
 
         // LOCAL EVENT
         void SpawnRole() {
+
+            // 生成角色
             RoleEntity prefab = AllAssets.WorldAssets.GetRolePrefab();
             RoleEntity role = GameObject.Instantiate(prefab);
+
+            // 设置坐标
+            MapEntity mapEntity = AllRepo.MapEntity;
+            Vector2 spawnPoint = mapEntity.GetRoleSpawnPoint();
+            role.transform.position = spawnPoint;
+
+            // 相机跟随角色
+            CameraEntity cameraEntity = AllRepo.CameraEntity;
+            cameraEntity.SetFollow(role.transform);
+
+            // 缓存起来
             AllRepo.SetRoleEntity(role);
+
         }
 
     }

@@ -39,8 +39,10 @@ namespace Sample2D.Entry {
             // - Repo
             PlayerInputEntity playerInputEntity = new PlayerInputEntity();
             PlayerEntity playerEntity = new PlayerEntity();
+            CameraEntity cameraEntity = transform.GetComponentInChildren<CameraEntity>();
             AllRepo.SetInputEntity(playerInputEntity);
             AllRepo.SetPlayerEntity(playerEntity);
+            AllRepo.SetCameraEntity(cameraEntity);
 
             // CONTROLLER
             mainController = new MainController();
@@ -76,8 +78,9 @@ namespace Sample2D.Entry {
                 return;
             }
 
+            float fixedDeltaTime = Time.fixedDeltaTime;
             mapController.FixedTick();
-            roleController.FixedTick();
+            roleController.FixedTick(fixedDeltaTime);
 
         }
 

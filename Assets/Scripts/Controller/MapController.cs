@@ -6,7 +6,7 @@ namespace Sample2D.Controller {
 
     public class MapController {
 
-        public MapController() {}
+        public MapController() { }
 
         public void Ctor() {
 
@@ -45,6 +45,12 @@ namespace Sample2D.Controller {
             MapEntity prefab = AllAssets.WorldAssets.GetMapPrefab();
             MapEntity map = GameObject.Instantiate(prefab);
             AllRepo.SetMapEntity(map);
+
+            // 让相机边缘 设置为地图的边缘
+            // 让相机跟随
+            PolygonCollider2D confiner = map.GetConfiner();
+            CameraEntity cameraEntity = AllRepo.CameraEntity;
+            cameraEntity.SetConfiner(confiner);
 
             // 生成角色
             AllEventCenter.SetIsSpawnRole(true);

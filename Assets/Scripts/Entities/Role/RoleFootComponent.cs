@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Sample2D {
 
+    // 角色脚底组件
     public class RoleFootComponent : MonoBehaviour {
 
         public event Action OnEnterGroundHandle;
