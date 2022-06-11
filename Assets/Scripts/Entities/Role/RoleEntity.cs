@@ -11,8 +11,6 @@ namespace Sample2D {
     // 偷懒 Role -> Actionor
     public class RoleEntity : MonoBehaviour {
 
-        Rigidbody2D rb;
-
         [SerializeField] float moveSpeed;
         [SerializeField] float jumpForce;
         [SerializeField] float fallingSpeed;
@@ -24,8 +22,17 @@ namespace Sample2D {
         // COMPONENT
         RoleFootComponent footComponent;
 
+        // ==== 动作 ====
+        RoleActionorComponent actionorComponent;
+        public RoleActionorComponent ActionorComponent => actionorComponent;
+
         // ==== 渲染 ====
         SpriteRenderer mesh;
+        public SpriteRenderer Mesh => mesh;
+
+        // ==== 物理 ====
+        Rigidbody2D rb;
+        BoxCollider2D bodyBox;
 
         // ==== 动画 ====
         Animator animator;
@@ -41,21 +48,26 @@ namespace Sample2D {
             isGround = true;
 
             rb = GetComponent<Rigidbody2D>();
+            bodyBox = GetComponent<BoxCollider2D>();
 
             mesh = transform.GetChild(0).GetComponent<SpriteRenderer>();
             animator = mesh.GetComponent<Animator>();
 
             footComponent = GetComponentInChildren<RoleFootComponent>();
-            footComponent.OnEnterGroundHandle += OnEnterGround;
+            footComponent.OnEnterGroundHandle += OnPhysicsEnterGround;
+
+            actionorComponent = GetComponentInChildren<RoleActionorComponent>();
 
             Debug.Assert(rb != null);
+            Debug.Assert(bodyBox != null);
             Debug.Assert(animator != null);
+            Debug.Assert(actionorComponent != null);
 
         }
 
         // ==== LOCOL MOTION ====
         // 左右移动
-        public void Move(Vector2 moveAxis) {
+        public void LocomotionMove(Vector2 moveAxis) {
 
             float vertical = rb.velocity.y;
 
@@ -80,7 +92,7 @@ namespace Sample2D {
         }
 
         // 跳
-        public void Jump(float jumpAxis) {
+        public void LocomotionJump(float jumpAxis) {
 
             if (jumpAxis <= 0 || isJump) {
                 return;
@@ -100,7 +112,7 @@ namespace Sample2D {
         }
 
         // 下落
-        public void Falling(float jumpAxis, float fixedDeltaTime) {
+        public void LocomotionFalling(float jumpAxis, float fixedDeltaTime) {
 
             // velo.y
             float x = rb.velocity.x;
@@ -124,9 +136,19 @@ namespace Sample2D {
 
         }
 
+        // ==== ANIMATION ====
+        public void AnimPlayMelee() {
+            animator.Play("anim_role_melee");
+        }
+
+        // ==== PHYSICS LOGIC ====
+        public void PhysicsSetBodyBoxActivation(bool isActive) {
+            bodyBox.enabled = isActive;
+        }
+
         // ==== PHYSICS EVENT ====
         // 落地检测
-        void OnEnterGround() {
+        void OnPhysicsEnterGround() {
 
             isJump = false;
             isGround = true;

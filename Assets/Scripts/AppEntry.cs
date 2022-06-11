@@ -40,7 +40,9 @@ namespace Sample2D.Entry {
             // ==== FACADES ====
             // - Assets
             WorldAssets worldAssets = GetComponentInChildren<WorldAssets>();
+            ActionorAssets actionorAssets = GetComponentInChildren<ActionorAssets>();
             AllAssets.SetWorldAssets(worldAssets);
+            AllAssets.SetActionorAssets(actionorAssets);
 
             // - EventCenter
             AllEventCenter.Ctor();

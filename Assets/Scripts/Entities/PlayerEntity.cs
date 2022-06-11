@@ -8,6 +8,7 @@ namespace Sample2D {
         // Input Model
         public Vector2 moveAxis;
         public float jumpAxis;
+        public bool isTriggerMelee;
 
     }
 

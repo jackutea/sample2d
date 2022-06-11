@@ -16,6 +16,7 @@ namespace Sample2D.Controller {
             PlayerInputEntity input = AllRepo.InputEntity;
             input.OnMoveHandle += OnMoveInput;
             input.OnJumpHandle += OnJumpInput;
+            input.OnMeleeHandle += OnMeleeInput;
         }
 
         // LOCAL EVENT
@@ -29,6 +30,11 @@ namespace Sample2D.Controller {
         void OnJumpInput(float jumpAxis) {
             PlayerEntity playerEntity = AllRepo.PlayerEntity;
             playerEntity.jumpAxis = jumpAxis;
+        }
+
+        void OnMeleeInput(bool isTriggerMelee) {
+            PlayerEntity playerEntity = AllRepo.PlayerEntity;
+            playerEntity.isTriggerMelee = isTriggerMelee;
         }
 
     }

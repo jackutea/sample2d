@@ -5,6 +5,7 @@ namespace Sample2D {
 
     public class WorldAssets : MonoBehaviour {
 
+        // 第一级
         [SerializeField] MapEntity mapPrefab;
         [SerializeField] RoleEntity rolePrefab;
         [SerializeField] MonsterEntity monsterPrefab;
