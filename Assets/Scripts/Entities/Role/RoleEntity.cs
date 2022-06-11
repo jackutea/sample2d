@@ -3,6 +3,12 @@ using UnityEngine;
 
 namespace Sample2D {
 
+    // 角色
+    // 角色可以施放技能
+    // 动作是根据技能来的
+    // 先不写技能, 先用一个按键写死, 普攻按键
+    // √ Role -> Skillor -> Actionor
+    // 偷懒 Role -> Actionor
     public class RoleEntity : MonoBehaviour {
 
         Rigidbody2D rb;

@@ -21,6 +21,8 @@ namespace Sample2D {
         // ==== 生成点 ====
         Transform roleSpawnPoint;
 
+        MapMonsterSpawnComponent monsterSpawnComponent;
+
         void Awake() {
 
             background = transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -30,11 +32,15 @@ namespace Sample2D {
 
             roleSpawnPoint = transform.GetChild(3);
 
+            Transform monsterSpawnGroup = transform.GetChild(4);
+            monsterSpawnComponent = monsterSpawnGroup.GetComponentInChildren<MapMonsterSpawnComponent>();
+
             Debug.Assert(background != null);
             Debug.Assert(cameraConfiner != null);
             Debug.Assert(tilemap != null);
             Debug.Assert(cameraPoint != null);
             Debug.Assert(roleSpawnPoint != null);
+            Debug.Assert(monsterSpawnComponent != null);
 
         }
 
@@ -48,6 +54,10 @@ namespace Sample2D {
 
         public Vector3 GetRoleSpawnPoint() {
             return roleSpawnPoint.position;
+        }
+
+        public MapMonsterSpawnComponent GetMonsterSpawnComponent() {
+            return monsterSpawnComponent;
         }
 
     }

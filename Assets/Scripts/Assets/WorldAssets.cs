@@ -7,6 +7,7 @@ namespace Sample2D {
 
         [SerializeField] MapEntity mapPrefab;
         [SerializeField] RoleEntity rolePrefab;
+        [SerializeField] MonsterEntity monsterPrefab;
 
         public MapEntity GetMapPrefab() {
             return mapPrefab;
@@ -14,6 +15,10 @@ namespace Sample2D {
 
         public RoleEntity GetRolePrefab() {
             return rolePrefab;
+        }
+
+        public MonsterEntity GetMonsterPrefab() {
+            return monsterPrefab;
         }
 
     }

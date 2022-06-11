@@ -214,6 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapPrefab: {fileID: 6930530484843963817, guid: 0a9899d3203c3404d86b2b2918bc03cc, type: 3}
   rolePrefab: {fileID: 7648545733364546650, guid: e97cc1635115c8d48b215008d7ef1b54, type: 3}
+  monsterPrefab: {fileID: 6871184535293903710, guid: e10311b32567932488745369cdd37804, type: 3}
 --- !u!1 &397607918
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 578561225}
   - component: {fileID: 578561227}
-  - component: {fileID: 578561226}
+  - component: {fileID: 578561229}
   - component: {fileID: 578561228}
   m_Layer: 0
   m_Name: CM
@@ -519,21 +520,6 @@ Transform:
   m_Father: {fileID: 1256190747}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &578561226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578561224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BoundingShape2D: {fileID: 0}
-  m_Damping: 0.5
-  m_MaxWindowSize: 0
 --- !u!114 &578561227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,6 +570,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &578561229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578561224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ConfineMode: 0
+  m_BoundingVolume: {fileID: 0}
+  m_BoundingShape2D: {fileID: 0}
+  m_ConfineScreenEdges: 1
+  m_Damping: 0
 --- !u!1 &1256190746
 GameObject:
   m_ObjectHideFlags: 0

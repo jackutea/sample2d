@@ -9,14 +9,14 @@ namespace Sample2D {
         Transform stand;
         CinemachineVirtualCamera cm;
 
-        CinemachineConfiner2D confiner2D;
+        CinemachineConfiner confiner2D;
 
         void Awake() {
 
             stand = transform.GetChild(0);
             cm = stand.GetChild(0).GetComponent<CinemachineVirtualCamera>();
 
-            confiner2D = cm.GetComponent<CinemachineConfiner2D>();
+            confiner2D = cm.GetComponent<CinemachineConfiner>();
 
             Debug.Assert(confiner2D != null);
 

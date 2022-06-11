@@ -12,7 +12,7 @@ Entry
 特定类
 All开头的，全局类
 Assets: 存储资源的(预制件、图片), WorldAssets / IconAssets
-EventCenter: 存储事件信息, 影响控制
+EventCenter: 存储事件信息, 影响控制(在不同的Controller之间传递信息)
 
 ==== 概念 ====
 解耦: 互相不需要知道对方的类存在, 但他们之间依然可以调用

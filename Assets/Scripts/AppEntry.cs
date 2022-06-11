@@ -14,6 +14,7 @@ namespace Sample2D.Entry {
         MainController mainController;
         MapController mapController;
         RoleController roleController;
+        MonsterController monsterController;
 
         // STATE
         bool isInit;
@@ -31,10 +32,18 @@ namespace Sample2D.Entry {
             isInit = false;
             isTearDown = false;
 
+            // 帧率
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 60;
+            MonoBehaviour.DontDestroyOnLoad(gameObject);
+
             // ==== FACADES ====
             // - Assets
             WorldAssets worldAssets = GetComponentInChildren<WorldAssets>();
             AllAssets.SetWorldAssets(worldAssets);
+
+            // - EventCenter
+            AllEventCenter.Ctor();
 
             // - Repo
             PlayerInputEntity playerInputEntity = new PlayerInputEntity();
@@ -44,7 +53,8 @@ namespace Sample2D.Entry {
             AllRepo.SetPlayerEntity(playerEntity);
             AllRepo.SetCameraEntity(cameraEntity);
 
-            // CONTROLLER
+            // ==== CONTROLLER ====
+            // ---- CTOR ----
             mainController = new MainController();
             mainController.Ctor();
 
@@ -54,9 +64,14 @@ namespace Sample2D.Entry {
             roleController = new RoleController();
             roleController.Ctor();
 
+            monsterController = new MonsterController();
+            monsterController.Ctor();
+
+            // ---- INIT ----
             mainController.Init();
             mapController.Init();
             roleController.Init();
+            monsterController.Init();
 
             // UI 开始游戏按钮
             uiPageLogin = GameObject.Instantiate(uiPageLoginPrefab, canvas.transform);
@@ -81,6 +96,7 @@ namespace Sample2D.Entry {
             float fixedDeltaTime = Time.fixedDeltaTime;
             mapController.FixedTick();
             roleController.FixedTick(fixedDeltaTime);
+            monsterController.FixedTick();
 
         }
 
@@ -103,6 +119,7 @@ namespace Sample2D.Entry {
             // 保证顺序的
             mapController.Tick();
             roleController.Tick();
+            monsterController.Tick();
 
         }
 

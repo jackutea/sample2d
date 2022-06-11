@@ -55,6 +55,22 @@ namespace Sample2D.Controller {
             // 生成角色
             AllEventCenter.SetIsSpawnRole(true);
 
+            // 生成怪物
+            MapMonsterSpawnComponent monsterSpawnComponent = map.GetMonsterSpawnComponent();
+            int count = monsterSpawnComponent.count;
+            if (count > 0) {
+                int monsterID = monsterSpawnComponent.monsterID;
+                Vector2 position = monsterSpawnComponent.position;
+
+                // 通过 EventCenter 在不同的 Controller 之间传递信息
+                AllEventCenter.EnqueueMonsterSpawn(new MonsterSpawnEvent{
+                    monsterID = monsterID,
+                    position = position,
+                    count = count
+                });
+
+            }
+
         }
 
     }
